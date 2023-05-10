@@ -26,14 +26,14 @@ int ctoi(char c){return c - '0';}
 
 int main(){
 
-    ll sum = 0;
+    ll ans = 0;
     rng(i,1,1000){
         if(i % 3 == 0 || i % 5 == 0){
-            sum += i;
+            ans += i;
         }
     }
 
-    cout << sum << endl;
+    cout << ans << endl;
 
     return 0;
 }
