@@ -24,7 +24,33 @@ ll mod(ll x, ll y){return (x % y + y) % y;}
 char itoc(int x){return x + '0';}
 int ctoi(char c){return c - '0';}
 
+vector<int> Eratosthenes( const ll N )//********************素数列挙******************
+{
+    vector<bool> is_prime( N + 1 );
+    for( int i = 0; i <= N; i++ )
+    {
+        is_prime[ i ] = true;
+    }
+    vector<int> P;
+    for( int i = 2; i <= N; i++ )
+    {
+        if( is_prime[ i ] )
+        {
+            for( int j = 2 * i; j <= N; j += i )
+            {
+                is_prime[ j ] = false;
+            }
+            P.emplace_back( i );
+        }
+    }
+    return P;
+}
+
 int main(){
+
+    vector<int> a = Eratosthenes(INF);
+
+    cout << a[10000] << endl;
 
     return 0;
 }
