@@ -30,7 +30,6 @@ int main(){
     string s = "1";
     rep(i,1000){
         ll up = 0;
-        //bool ok = true;
         // cout << s << endl;
         rrng(j,si(s)-1,0){
             ll num = (ctoi(s[j]) * 2);
