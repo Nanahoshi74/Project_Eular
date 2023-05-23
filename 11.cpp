@@ -24,9 +24,76 @@ ll mod(ll x, ll y){return (x % y + y) % y;}
 char itoc(int x){return x + '0';}
 int ctoi(char c){return c - '0';}
 
+bool isvalid(int x, int y) {
+    if(0 <= x && x < 20 && 0 <= y && y < 20) {return true;}
+    else {return false;}
+}
+
 int main(){
 
-    
+    vector<vector<ll>> a(20,vector<ll>(20));
+    rep(i,20){
+        rep(j,20){
+            cin >> a[i][j];
+        }
+    }
+
+    ll ans = -1;
+    rep(i,20){
+        rep(j,20){
+            ////////////右
+            ll p = a[i][j];
+            if(isvalid(i,j+1)){
+                p *= a[i][j+1];
+            }
+            if(isvalid(i,j+2)){
+                p *= a[i][j+2];
+            }
+            if(isvalid(i,j+3)){
+                p *= a[i][j+3];
+            }
+            ans = max(ans,p);
+            ////////////////下
+            p = a[i][j];
+            if(isvalid(i+1,j)){
+                p *= a[i+1][j];
+            }
+            if(isvalid(i+2,j)){
+                p *= a[i+2][j];
+            }
+            if(isvalid(i+3,j)){
+                p *= a[i+3][j];
+            }
+            ans = max(ans,p);
+            ////////////////////斜め右
+            p = a[i][j];
+            if(isvalid(i+1,j+1)){
+                p *= a[i+1][j+1];
+            }
+            if(isvalid(i+2,j+2)){
+                p *= a[i+2][j+2];
+            }
+            if(isvalid(i+3,j+3)){
+                p *= a[i+3][j+3];
+            }
+            ans = max(ans,p);
+            ///////////////////斜め左
+            p = a[i][j];
+            if(isvalid(i+1,j-1)){
+                p *= a[i+1][j-1];
+            }
+            if(isvalid(i+2,j-2)){
+                p *= a[i+2][j-2];
+            }
+            if(isvalid(i+3,j-3)){
+                p *= a[i+3][j-3];
+            }
+            ans = max(ans,p);
+        }
+    } 
+
+    cout << ans << endl;
+
 
     return 0;
 }
