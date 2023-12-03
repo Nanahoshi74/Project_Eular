@@ -34,7 +34,54 @@ ll ceil(ll x , ll y){return (x+y-1)/y;}
 
 int main(){
 
-    
+    string s;
+    cin >> s;
+
+    ll len = si(s);
+
+    string t;
+
+    ll ans = 0;
+
+    unordered_set<ll> st;
+    rng(i,1,(ll)1e6){
+        ll num = (i * (i+1)) / 2;
+        st.insert(num);
+    }
+
+    auto f = [&](string str) -> bool{
+        ll n = si(str);
+        ll a = 0;
+        rep(i,n){
+            a += ((str[i] - 'A') + 1);
+        }
+        if(st.count(a)){
+            return true;
+        }
+        return false;
+    };
+
+    ll cnt = 0;
+
+    rep(i,len){
+        if(s[i] == '"'){
+            if(cnt % 2 == 1){
+                if(f(t)){
+                    ans++;
+                }
+                t.clear();
+            }
+            cnt++;
+        }
+        else if(s[i] == ','){
+            continue;
+        }
+        else{
+            t += s[i];
+        }
+    }
+
+    cout << ans << endl;
 
     return 0;
 }
